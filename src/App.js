@@ -2,38 +2,50 @@ import React from "react";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PageLayout from "./assets/components/layout";
+import Signin from "./assets/components/pages/auths/Signin";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <PageLayout>
-          <Switch>
-            <Route path="/users">
-              <Users />
-            </Route>
-            <Route path="/village">
-              <Village />
-            </Route>
-            <Route path="/post">
-              <Post />
-            </Route>
-            <Route path="/campaign">
-              <Campaign />
-            </Route>
-            <Route path="/pages">
-              <Pages />
-            </Route>
-            <Route path="/">
-              <Dashboard />
-            </Route>
-          </Switch>
-        </PageLayout>
+        <Switch>
+          <Route path="/signin">
+            <Signin />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <PageLayout>
+            <Switch>
+              <Route path="/users">
+                <Users />
+              </Route>
+              <Route path="/village">
+                <Village />
+              </Route>
+              <Route path="/post">
+                <Post />
+              </Route>
+              <Route path="/campaign">
+                <Campaign />
+              </Route>
+              <Route path="/pages">
+                <Pages />
+              </Route>
+              <Route path="/">
+                <Dashboard />
+              </Route>
+            </Switch>
+          </PageLayout>
+        </Switch>
       </div>
     </Router>
   );
 }
 
+function Signup() {
+  return <h2>Signup</h2>;
+}
 function Dashboard() {
   return <h2>Dashboard</h2>;
 }
