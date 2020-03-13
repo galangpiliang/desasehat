@@ -1,51 +1,56 @@
 import React from "react";
 import "./App.scss";
-import { Button } from "antd";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PageLayout from "./assets/components/layout";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Desa Sehat</h1>
-        <Link to="/">
-          <Button type="primary">Home</Button>
-        </Link>
-
-        <Link to="/about">
-          <Button type="primary">About</Button>
-        </Link>
-
-        <Link to="/users">
-          <Button type="primary">Users</Button>
-        </Link>
-
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <PageLayout>
+          <Switch>
+            <Route path="/users">
+              <Users />
+            </Route>
+            <Route path="/village">
+              <Village />
+            </Route>
+            <Route path="/post">
+              <Post />
+            </Route>
+            <Route path="/campaign">
+              <Campaign />
+            </Route>
+            <Route path="/pages">
+              <Pages />
+            </Route>
+            <Route path="/">
+              <Dashboard />
+            </Route>
+          </Switch>
+        </PageLayout>
       </div>
     </Router>
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
+function Dashboard() {
+  return <h2>Dashboard</h2>;
 }
-
-function About() {
-  return <h2>About</h2>;
-}
-
 function Users() {
   return <h2>Users</h2>;
+}
+function Village() {
+  return <h2>Village</h2>;
+}
+function Post() {
+  return <h2>Post</h2>;
+}
+function Campaign() {
+  return <h2>Campaign</h2>;
+}
+function Pages() {
+  return <h2>Pages</h2>;
 }
 
 export default App;
