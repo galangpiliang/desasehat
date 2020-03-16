@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import "./Signin.scss";
 
-export default function Signin() {
+export default function Signin(props) {
   const onFinish = values => {
     console.log("Received values of form: ", values);
   };
@@ -62,7 +63,7 @@ export default function Signin() {
           >
             Log in
           </Button>
-          Or <a href="/#">register now!</a>
+          Or <Link to="/signup">register now!</Link>
         </Form.Item>
       </Form>
     </div>

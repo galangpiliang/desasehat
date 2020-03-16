@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Avatar } from "antd";
+import { Layout, Menu, message, Dropdown } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
@@ -7,14 +7,39 @@ import {
   FormOutlined,
   DashboardOutlined,
   AlertOutlined,
-  CopyOutlined
+  CopyOutlined,
+  PoweroffOutlined
 } from "@ant-design/icons";
 import "./PageLayout.scss";
-import { Link, Switch, Route } from "react-router-dom";
-
-const { Header, Content, Footer, Sider } = Layout;
+import { Link, Switch, Route, useHistory } from "react-router-dom";
 
 const PageLayout = props => {
+  const { Header, Content, Footer, Sider } = Layout;
+  const history = useHistory();
+
+  function handleMenuClick(e) {
+    message.info("Click on menu item. " + e.key);
+    console.log("click", e);
+  }
+
+  function handleProfileClick(e) {
+    message.info("Click on Profile village");
+    console.log("click", e);
+    history.push("/village");
+  }
+
+  const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="1">
+        <UserOutlined />
+        Profile
+      </Menu.Item>
+      <Menu.Item key="2">
+        <PoweroffOutlined />
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <Layout className="Layout">
       <Sider
@@ -28,10 +53,10 @@ const PageLayout = props => {
         }}
       >
         <div className="logo">Desa Sehat</div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1">
             <DashboardOutlined />
-            <Link to="/">
+            <Link to="/dashboard">
               <span className="nav-text">Dashboard</span>
             </Link>
           </Menu.Item>
@@ -79,10 +104,16 @@ const PageLayout = props => {
               <Route path="/post">Post</Route>
               <Route path="/campaign">Campaign</Route>
               <Route path="/pages">Pages</Route>
-              <Route path="/">Dashboard</Route>
+              <Route>Dashboard</Route>
             </Switch>
           </h1>
-          <Avatar icon={<UserOutlined />} />
+          <Dropdown.Button
+            overlay={menu}
+            icon={<UserOutlined />}
+            onClick={handleProfileClick}
+          >
+            Admin Name
+          </Dropdown.Button>
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div

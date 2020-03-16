@@ -1,21 +1,17 @@
-.Signin {
+.Signup {
   padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
   height: 100vh;
-  .login-form {
+  .register-form {
     padding: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
     border-radius: 0.5rem;
+    width: 400px;
   }
-
-  .login-form-forgot {
-    float: right;
-  }
-
-  .login-form-button {
+  .ant-btn {
     width: 100%;
     margin-bottom: 1rem;
   }
