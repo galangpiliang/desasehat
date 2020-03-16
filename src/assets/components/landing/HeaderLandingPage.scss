@@ -1,36 +1,38 @@
 @import "./Variable.scss";
 
-.navbar-page {
-  display: inline-flex;
+.container-page {
+  .navbar-page {
+    display: inline-flex;
 
-  h1 {
-    margin-left: 100px;
-    color: $color2;
+    h1 {
+      margin-left: 100px;
+      color: $color2;
+    }
+
+    input {
+      height: 10px;
+      margin-top: 33px;
+    }
+
+    i {
+      margin-top: 33px;
+    }
   }
 
-  input {
-    height: 10px;
-    margin-top: 33px;
+  .list-page {
+    display: inline-flex;
+    margin-left: 430px;
   }
 
-  i {
-    margin-top: 33px;
-  }
-}
+  li {
+    padding: 17px;
+    list-style: none;
 
-.list-page {
-  display: inline-flex;
-  margin-left: 430px;
-}
-
-li {
-  padding: 17px;
-  list-style: none;
-
-  &:hover {
-    cursor: pointer;
-    color: $color1;
-    background-color: $color2;
-    border-radius: 30px;
+    &:hover {
+      cursor: pointer;
+      color: $color1;
+      background-color: $color2;
+      border-radius: 30px;
+    }
   }
 }
