@@ -1,0 +1,103 @@
+@import "./Variable.scss";
+
+.container-section {
+  margin-left: 103px;
+
+  h1 {
+    color: $color3;
+  }
+
+  img {
+    width: 150px;
+  }
+}
+
+.text-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.image-section {
+  img {
+    width: 400px;
+    margin-right: 50px;
+    border-radius: 10px;
+  }
+}
+
+.grid-row {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  margin: 0 0 -15px 0;
+
+  .item1 {
+    display: table-cell;
+    // background: #9944e8;
+    width: 50%;
+    padding: 15px;
+
+    .inside-grid1 {
+      background-color: lightblue;
+
+      h1 {
+        color: black;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      img {
+        margin-left: 150px;
+        width: 300px;
+      }
+    }
+  }
+
+  .item2 {
+    display: table-cell;
+    // background: #e84485;
+    width: 50%;
+    padding: 15px;
+
+    .inside-grid2 {
+      background-color: lightblue;
+
+      h1 {
+        color: black;
+        text-align: center;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      img {
+        margin-left: 220px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .grid-row {
+      display: block;
+      width: 100%;
+      margin: 0;
+    }
+
+    .item {
+      display: block;
+      width: 100%;
+      margin: 0 0 5px 0;
+    }
+  }
+}
+
+.footer-section {
+  h3 {
+    text-align: center;
+  }
+}

@@ -1,9 +1,12 @@
 import React from "react";
+import HeaderLandingPage from "./HeaderLandingPage";
+import SectionLandingPage from "./SectionLandingPage";
 
-export default function Landing() {
+export default function Landing(props) {
   return (
     <div>
-      <h1>This is a landing page</h1>
+      <HeaderLandingPage {...props} />
+      <SectionLandingPage {...props} />
     </div>
   );
 }
