@@ -1,0 +1,15 @@
+.Dashboard {
+  flex-flow: wrap;
+  display: flex;
+  justify-content: space-evenly;
+
+  .ant-card {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    margin-bottom: 2rem;
+  }
+  .ant-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
