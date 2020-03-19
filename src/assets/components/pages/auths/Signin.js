@@ -4,9 +4,16 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { MailOutlined, LockOutlined } from "@ant-design/icons";
 import "./Signin.scss";
 
+// Redux
+import { useDispatch } from "react-redux";
+import { ACTION_SIGN_IN } from "../../../stores/actions/auth";
+
 export default function Signin(props) {
+  const dispatch = useDispatch();
+
   const onFinish = values => {
     console.log("Received values of form: ", values);
+    dispatch(ACTION_SIGN_IN(values));
   };
 
   return (

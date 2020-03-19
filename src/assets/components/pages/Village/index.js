@@ -6,7 +6,7 @@ export default function Village(props) {
     <div>
       {console.log(props)}
       <h1>This is Village page</h1>
-      <Button onClick={() => props.history.push("/")}>To Dashboard</Button>
+      <Button onClick={() => props.history.push("/")}>To Landing Page</Button>
     </div>
   );
 }

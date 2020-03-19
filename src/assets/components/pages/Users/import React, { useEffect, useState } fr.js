@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Table, Input, Button, Spin } from "antd";
+import { Table, Input, Button } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
@@ -12,17 +12,16 @@ function Users(props) {
   const dispatch = useDispatch();
   const stateUsers = useSelector(state => state.users);
   console.log(Array.isArray(stateUsers));
-  const tableData =
-    stateUsers && stateUsers.map(user => ({ ...user, key: user._id }));
+  const tableData = stateUsers.map(user => ({ ...user, key: user._id }));
 
   const [state, setState] = useState({
     searchText: "",
     searchedColumn: ""
   });
 
-  // let { sortedInfo, filteredInfo } = state;
-  // sortedInfo = sortedInfo || {};
-  // filteredInfo = filteredInfo || {};
+  let { sortedInfo, filteredInfo } = state;
+  sortedInfo = sortedInfo || {};
+  filteredInfo = filteredInfo || {};
   let searchInput = false;
 
   const getColumnSearchProps = dataIndex => ({
@@ -92,7 +91,6 @@ function Users(props) {
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setState({
-      ...state,
       searchText: selectedKeys[0],
       searchedColumn: dataIndex
     });
@@ -100,12 +98,15 @@ function Users(props) {
 
   const handleReset = clearFilters => {
     clearFilters();
-    setState({ ...state, searchText: "" });
+    setState({ searchText: "" });
   };
 
   const handleChange = (pagination, filters, sorter) => {
     console.log("Various parameters", pagination, filters, sorter);
-    setState({ ...state, filteredInfo: filters, sortedInfo: sorter });
+    setState({
+      filteredInfo: filters,
+      sortedInfo: sorter
+    });
   };
 
   const columns = [
@@ -140,7 +141,7 @@ function Users(props) {
         { text: "Male", value: "Male" },
         { text: "Female", value: "Female" }
       ],
-      // filteredValue: filteredInfo.gender || null,
+      filteredValue: filteredInfo.gender || null,
       onFilter: (value, record) => record.gender.includes(value),
       sorter: (a, b) => {
         return a.gender.localeCompare(b.gender);
@@ -156,7 +157,7 @@ function Users(props) {
         { text: "admin", value: "admin" },
         { text: "user", value: "user" }
       ],
-      // filteredValue: filteredInfo.role || null,
+      filteredValue: filteredInfo.role || null,
       onFilter: (value, record) => record.role === value,
       sorter: (a, b) => a.role.length - b.role.length,
       sortDirections: ["ascend", "descend"]
@@ -182,13 +183,11 @@ function Users(props) {
     };
   }, [dispatch]);
 
-  console.log(tableData);
-  return tableData ? (
-    <Table columns={columns} dataSource={tableData} onChange={handleChange} />
-  ) : (
-    <Spin tip="Loading...">
-      <Table columns={columns} />
-    </Spin>
+  return (
+    <div>
+      {console.log(props)}
+      <Table columns={columns} dataSource={data} onChange={handleChange} />
+    </div>
   );
 }
 

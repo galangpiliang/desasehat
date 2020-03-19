@@ -12,20 +12,32 @@ import {
 } from "@ant-design/icons";
 import "./PageLayout.scss";
 import { Link, Switch, Route, useHistory } from "react-router-dom";
+import { ACTION_SIGN_OUT } from "../../stores/actions/auth";
+import { useDispatch } from "react-redux";
 
 const PageLayout = props => {
   const { Header, Content, Footer, Sider } = Layout;
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const doSignout = () => {
+    console.log("signout triggered");
+    dispatch(ACTION_SIGN_OUT());
+  };
 
   function handleMenuClick(e) {
-    message.info("Click on menu item. " + e.key);
+    if (e.key === "2") {
+      doSignout();
+    } else {
+      message.info("Profile page is not finish yet || key: " + e.key);
+    }
     console.log("click", e);
   }
 
   function handleProfileClick(e) {
-    message.info("Click on Profile village");
+    message.info("You are in dashboard page");
     console.log("click", e);
-    history.push("/village");
+    history.push("/dashboard");
   }
 
   const menu = (
@@ -112,7 +124,7 @@ const PageLayout = props => {
             icon={<UserOutlined />}
             onClick={handleProfileClick}
           >
-            Admin Name
+            {props.user.full_name}
           </Dropdown.Button>
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
