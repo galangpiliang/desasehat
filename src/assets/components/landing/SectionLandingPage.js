@@ -22,7 +22,7 @@ class SectionLandingPage extends Component {
             <img
               className="google"
               src="https://connect-prd-cdn.unity.com/20190708/p/images/240287ba-a082-4173-835f-bfda57a52df8_Download_orange_button.png"
-              alt="/"
+              alt=""
             />
           </div>
           <div className="image-section">
@@ -43,7 +43,7 @@ class SectionLandingPage extends Component {
                 medis dari ribuan #Dermawan Desasehat
               </p>
               <img
-                src="https://lh3.googleusercontent.com/proxy/G41RMh_tSg4OEMpXQuBTluvsRxioFGpkjd3aLgPNpWRQ9jF2gulFeMkUIKX2w8VlhYF1n0ZU81AlUQUyEcjKV-IqYiWTgdS2PGxzJ9PS4IvwLl1WTT8JJtjGGPirGTHprtnkv53fanInucs8ny81uJIG0pOrwvurPbZRDEUvjTfiaA"
+                src="https://lh3.googleusercontent.com/proxy/wUl17SmUzbg9Mm4f11x2Ca3prT-5cEd_qItXel3_ny1uYZdcOG1cR2dPb3Oc7pqkQf6aCaAxwIUac9g5QWcNXxmBmba8wkvW3GszKMf4AHPk_hzdKHC3H90uYWBOHA-d78oRpedGZekcFX5SejV60V93Ew7et1WRb6pswNLJ302_FQ"
                 alt=""
               />
             </div>
@@ -62,9 +62,9 @@ class SectionLandingPage extends Component {
                 alt=""
               />
             </div>
-            <div className="footer-setion">
-              <h3>Powered by</h3>
-            </div>
+            {/* <div className="footer-setion">
+              <h3>Powered by</h3> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

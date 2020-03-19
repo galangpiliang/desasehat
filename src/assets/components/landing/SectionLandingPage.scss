@@ -19,8 +19,8 @@
 
   .image-section {
     img {
-      width: 400px;
-      margin-right: 50px;
+      width: 450px;
+      margin-right: 150px;
       border-radius: 10px;
     }
   }
@@ -39,6 +39,7 @@
 
       .inside-grid1 {
         background-color: lightblue;
+        border-radius: 5px;
 
         h1 {
           color: black;
@@ -50,8 +51,9 @@
         }
 
         img {
-          margin-left: 150px;
+          margin-left: 140px;
           width: 300px;
+          border-radius: 10px;
         }
       }
     }
@@ -64,6 +66,8 @@
 
       .inside-grid2 {
         background-color: lightblue;
+        border-radius: 5px;
+        width: 550px;
 
         h1 {
           color: black;
@@ -75,7 +79,8 @@
         }
 
         img {
-          margin-left: 220px;
+          margin-left: 205px;
+          border-radius: 10px;
         }
       }
     }
@@ -98,6 +103,7 @@
   .footer-section {
     h3 {
       text-align: center;
+      
     }
   }
 }
