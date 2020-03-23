@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
 import app from "../../images/app.png";
-import apple from "../../images/apple.png";
 
 export class DownloadPage extends Component {
   render() {
@@ -29,7 +28,9 @@ export class DownloadPage extends Component {
                 of type and scrambled it to make a type specimen book.
               </p>
               <button className="download-button--primary">download</button>
-              <button className="download-button--secondary">google play</button>
+              <button className="download-button--secondary">
+                google play
+              </button>
             </Col>
           </Row>
         </div>

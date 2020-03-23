@@ -8,7 +8,7 @@ import SubscribePage from "./SubscribePage";
 import FooterPage from "./FooterPage";
 import "../../style/LandingPage.scss";
 
-export default function Landing() {
+export default function Landing(props) {
   return (
     <div className="landing-page">
       <HeaderNav />
