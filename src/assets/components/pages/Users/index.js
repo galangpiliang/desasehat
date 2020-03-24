@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-import { Table, Input, Button, Spin } from "antd";
+import { Table, Input, Button, Tag, Modal } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import Cascade from "./Cascader";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { ACTION_GET_USERS } from "../../../stores/actions/users";
+import {
+  ACTION_GET_USERS,
+  ACTION_DELETE_USERS,
+  ACTION_ROLE_USERS,
+  ACTION_ADD_USERS
+} from "../../../stores/actions/users";
+import ModalAddUser from "./Modal";
 
 function Users(props) {
   const dispatch = useDispatch();
-  const stateUsers = useSelector(state => state.users);
-  console.log(Array.isArray(stateUsers));
-  const tableData =
-    stateUsers && stateUsers.map(user => ({ ...user, key: user._id }));
+  const { confirm } = Modal;
+  const stateLoading = useSelector(state => state.loading);
 
+  // Filter Table Data
   const [state, setState] = useState({
     searchText: "",
     searchedColumn: ""
   });
-
-  // let { sortedInfo, filteredInfo } = state;
-  // sortedInfo = sortedInfo || {};
-  // filteredInfo = filteredInfo || {};
   let searchInput = false;
-
   const getColumnSearchProps = dataIndex => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -104,10 +105,13 @@ function Users(props) {
   };
 
   const handleChange = (pagination, filters, sorter) => {
-    console.log("Various parameters", pagination, filters, sorter);
+    // console.log("Various parameters", pagination, filters, sorter);
     setState({ ...state, filteredInfo: filters, sortedInfo: sorter });
   };
+  // End Filter Table Data
 
+  // Table Data
+  const stateUsers = useSelector(state => state.users.data);
   const columns = [
     {
       title: "Full Name",
@@ -133,6 +137,17 @@ function Users(props) {
       ...getColumnSearchProps("email")
     },
     {
+      title: "address",
+      dataIndex: "address",
+      key: "address",
+      onFilter: (value, record) => record.address.indexOf(value) === 0,
+      sorter: (a, b) => {
+        return a.address.localeCompare(b.address);
+      },
+      sortDirections: ["ascend", "descend"],
+      ...getColumnSearchProps("address")
+    },
+    {
       title: "gender",
       dataIndex: "gender",
       key: "gender",
@@ -140,12 +155,18 @@ function Users(props) {
         { text: "Male", value: "Male" },
         { text: "Female", value: "Female" }
       ],
-      // filteredValue: filteredInfo.gender || null,
       onFilter: (value, record) => record.gender.includes(value),
       sorter: (a, b) => {
         return a.gender.localeCompare(b.gender);
       },
-      sortDirections: ["ascend", "descend"]
+      sortDirections: ["ascend", "descend"],
+      render: tag => (
+        <span>
+          <Tag color={tag === "Male" ? "blue" : "magenta"} key={tag}>
+            {tag.toUpperCase()}
+          </Tag>
+        </span>
+      )
     },
     {
       title: "role",
@@ -156,24 +177,85 @@ function Users(props) {
         { text: "admin", value: "admin" },
         { text: "user", value: "user" }
       ],
-      // filteredValue: filteredInfo.role || null,
       onFilter: (value, record) => record.role === value,
       sorter: (a, b) => a.role.length - b.role.length,
-      sortDirections: ["ascend", "descend"]
+      sortDirections: ["ascend", "descend"],
+      render: tag => (
+        <span>
+          <Tag
+            color={
+              tag === "user"
+                ? "green"
+                : tag === "admin"
+                ? "geekblue"
+                : "volcano"
+            }
+            key={tag}
+          >
+            {tag}
+          </Tag>
+        </span>
+      )
     },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <span>
-          <a href="#/" style={{ marginRight: 16 }}>
-            Invite {record.name}
-          </a>
-          <a href="#/">Delete</a>
+          {record.role !== "superuser" && (
+            <a
+              href="#/"
+              style={{ marginRight: 16 }}
+              onClick={() =>
+                roleUser(record._id, record.role === "user" ? "admin" : "user")
+              }
+            >
+              Change Role
+            </a>
+          )}
+          {record.role !== "superuser" && (
+            <a
+              href="#/"
+              style={{ marginRight: 16 }}
+              onClick={() => showConfirm(record._id)}
+            >
+              Delete
+            </a>
+          )}
         </span>
       )
     }
   ];
+  // End Table Data
+
+  // Action User
+  const roleUser = (id, role) => {
+    dispatch(ACTION_ROLE_USERS(id, role));
+  };
+
+  const addUser = (values, form, setVisible) => {
+    dispatch(ACTION_ADD_USERS(values)).then(e => {
+      setVisible(false);
+      form.resetFields();
+      setState({ ...state });
+    });
+  };
+
+  function showConfirm(id) {
+    confirm({
+      title: "Are you sure want to delete this user?",
+      icon: <ExclamationCircleOutlined />,
+      content:
+        "This user will be deleted immediately. You can't undo this action.",
+      onOk() {
+        return new Promise((resolve, reject) => {
+          dispatch(ACTION_DELETE_USERS(id)).then(resolve);
+        }).catch(() => console.log("Oops errors!"));
+      },
+      onCancel() {}
+    });
+  }
+  // End Action User
 
   useEffect(() => {
     dispatch(ACTION_GET_USERS());
@@ -182,13 +264,24 @@ function Users(props) {
     };
   }, [dispatch]);
 
-  console.log(tableData);
-  return tableData ? (
-    <Table columns={columns} dataSource={tableData} onChange={handleChange} />
-  ) : (
-    <Spin tip="Loading...">
-      <Table columns={columns} />
-    </Spin>
+  return (
+    <div>
+      <ModalAddUser loading={stateLoading} addUser={addUser} />
+      <Cascade />
+      <Table
+        columns={columns}
+        dataSource={stateUsers}
+        onChange={handleChange}
+        loading={stateLoading}
+        rowKey={i => i._id}
+        // expandable={{
+        //   expandedRowRender: record => (
+        //     <p style={{ margin: 0 }}>{record.bio}</p>
+        //   ),
+        //   rowExpandable: record => record.bio
+        // }}
+      />
+    </div>
   );
 }
 

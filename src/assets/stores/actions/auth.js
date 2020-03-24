@@ -1,7 +1,6 @@
 import {
   SIGN_UP,
   SIGN_IN,
-  RECOVER,
   SIGN_OUT,
   LOADING,
   ERROR_LOGIN,
@@ -10,10 +9,9 @@ import {
   CHANGE_AVATAR
 } from "./types";
 import Axios from "axios";
-const baseUrl = "https://desasehatg.herokuapp.com/api";
+import { message } from "antd";
 
-const tokenSementara =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTcwN2ExZTVkYjA1ZjAwMTdhNzkxMTEiLCJyb2xlIjoidXNlciIsImlhdCI6MTU4NDQyOTU5OH0.Bxd0C3zLvkgUeGYfv_47jGTWIPN5F-Q0MWio9IOCkYA";
+const baseUrl = "https://desasehatg.herokuapp.com/api";
 
 export const ACTION_SIGN_UP = input => {
   return dispatch => {
@@ -42,7 +40,7 @@ export const ACTION_SIGN_UP = input => {
 export const ACTION_SIGN_IN = input => {
   return dispatch => {
     console.log("ACTION_SIGN_IN");
-    // dispatch({ type: LOADING });
+    dispatch({ type: LOADING });
     Axios.post(`${baseUrl}/user/auth`, input)
       .then(res => {
         console.log(res);
@@ -51,6 +49,7 @@ export const ACTION_SIGN_IN = input => {
           payload: res.data.data
         });
         dispatch({ type: LOADING });
+        message.info("Welcome Back " + res.data.data.full_name);
       })
       .catch(error => {
         console.log(error);
@@ -58,7 +57,8 @@ export const ACTION_SIGN_IN = input => {
           type: ERROR_LOGIN,
           payload: error
         });
-        // dispatch({ type: LOADING });
+        dispatch({ type: LOADING });
+        message.info("Incorrect Email or Password Combination");
       });
   };
 };
@@ -82,6 +82,7 @@ export const ACTION_RECOVER = input => {
 };
 
 export const ACTION_SIGN_OUT = () => {
+  message.info("Thank you for using our service");
   return {
     type: SIGN_OUT
   };
