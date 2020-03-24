@@ -14,6 +14,7 @@ const { Title } = Typography;
 
 export default function Dashboard() {
   const history = useHistory();
+
   const redirect = url => {
     history.push(url);
   };

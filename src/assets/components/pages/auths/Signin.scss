@@ -5,10 +5,27 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+
+  background-image: linear-gradient(
+    to right bottom,
+    #b5d163,
+    #86d484,
+    #5bd2a6,
+    #40cdc4,
+    #4cc5d6
+  );
+
+  .logo {
+    height: 80px;
+    background: url("../../../images/logo.svg") no-repeat center;
+    margin: 0 auto 1.5rem;
+  }
+
   .login-form {
     padding: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
-    border-radius: 0.5rem;
+    border-radius: 3.5rem 1rem;
+    background: white;
   }
 
   .login-form-forgot {
@@ -17,6 +34,6 @@
 
   .login-form-button {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 }

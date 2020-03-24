@@ -1,12 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
+import { MailOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons";
 import "./Signin.scss";
 
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { ACTION_SIGN_IN } from "../../../stores/actions/auth";
+
 export default function Signin(props) {
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.loading);
+
   const onFinish = values => {
     console.log("Received values of form: ", values);
+    dispatch(ACTION_SIGN_IN(values));
   };
 
   return (
@@ -17,6 +25,7 @@ export default function Signin(props) {
         initialValues={{ remember: true }}
         onFinish={onFinish}
       >
+        <div className="logo"></div>
         <Form.Item
           name="email"
           rules={[
@@ -60,10 +69,12 @@ export default function Signin(props) {
             type="primary"
             htmlType="submit"
             className="login-form-button"
+            icon={<LoginOutlined />}
+            loading={loading}
           >
-            Log in
+            SIGN IN
           </Button>
-          Or <Link to="/signup">register now!</Link>
+          {/* Or <Link to="/signup">register now!</Link> */}
         </Form.Item>
       </Form>
     </div>

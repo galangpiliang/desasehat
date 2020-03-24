@@ -5,11 +5,20 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #b5d163,
+    #86d484,
+    #5bd2a6,
+    #40cdc4,
+    #4cc5d6
+  );
   .register-form {
     padding: 1rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
     border-radius: 0.5rem;
     width: 400px;
+    background: white;
   }
   .ant-btn {
     width: 100%;
