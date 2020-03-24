@@ -3,12 +3,11 @@ import {
   ADD_USERS,
   DELETE_USERS,
   ROLE_USERS,
-  LOADING
+  LOADING,
+  baseUrl
 } from "./types";
 import Axios from "axios";
 import { message } from "antd";
-
-const baseUrl = "https://desasehatg.herokuapp.com/api";
 
 const local = JSON.parse(localStorage.getItem("userLocal"));
 let setToken = {
