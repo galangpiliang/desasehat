@@ -1,0 +1,145 @@
+@import "./variable.scss";
+.landing-page {
+  margin: 0 5rem;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &__logo {
+      display: flex;
+      align-items: center;
+      img {
+        width: 2rem;
+      }
+      span {
+        font-size: 2.6rem;
+      }
+      .desa {
+        color: $color-secondary;
+      }
+      .sehat {
+        color: $color-primary;
+      }
+    }
+    &__menu {
+      ul {
+        display: flex;
+      }
+      li {
+        list-style: none;
+        margin: 0 2rem;
+        // padding: 10px;
+        &:hover {
+          // background-color: cadetblue;
+          cursor: pointer;
+          // border-radius: 20px;
+          // color: white;
+        }
+      }
+    }
+  }
+
+  .hero {
+    height: 60vh;
+    padding: 2rem 0;
+
+    &__text {
+      h1 {
+        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .googleplay {
+        width: 7rem;
+        margin-left: -0.5rem;
+      }
+    }
+    &__image {
+      .desasehat {
+        width: 30rem;
+        margin-left: 9.5rem;
+        border-radius: 1rem;
+      }
+    }
+  }
+
+  .feature {
+    height: 40vh;
+    background-color: #f7f7f7;
+    padding: 2rem 0;
+    &__title {
+      text-align: center;
+    }
+    &__list {
+      text-align: center;
+    }
+  }
+
+  .download {
+    padding: 2rem 0;
+    &__detail {
+      h4 {
+        margin-top: 200px;
+      }
+      &__image {
+        text-align: center;
+      }
+    }
+
+    .download-button {
+      &--primary {
+        background-image: linear-gradient(
+          to right,
+          $color-secondary,
+          $color-primary
+        );
+      }
+
+      &--secondary {
+        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border: 1px solid $color-secondary;
+      }
+    }
+
+    .app-image {
+      width: 20em;
+    }
+    &__title {
+      text-align: center;
+    }
+  }
+
+  .subscribe {
+    padding: 2rem 0;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+
+  .footer {
+    padding: 2rem 0;
+    text-align: center;
+    background: linear-gradient(to right, $color-secondary, $color-primary);
+    color: white;
+    &__icon {
+      .fa {
+        margin: 1rem;
+      }
+    }
+
+    &__menu {
+      ul {
+        list-style: none;
+        text-align: center;
+      }
+
+      li {
+        margin: 1rem;
+        display: inline-block;
+      }
+    }
+  }
+}
