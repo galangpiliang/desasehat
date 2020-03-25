@@ -6,12 +6,11 @@ import {
   ERROR_LOGIN,
   ERROR_UPDATE,
   UPDATE_PROFILE,
-  CHANGE_AVATAR
+  CHANGE_AVATAR,
+  baseUrl
 } from "./types";
 import Axios from "axios";
 import { message } from "antd";
-
-const baseUrl = "https://desasehatg.herokuapp.com/api";
 
 export const ACTION_SIGN_UP = input => {
   return dispatch => {

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Input, Button, Tag, Modal } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
-import Cascade from "./Cascader";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -122,8 +121,8 @@ function Users(props) {
         return a.full_name.localeCompare(b.full_name);
       },
       sortDirections: ["ascend", "descend"],
-      ...getColumnSearchProps("full_name"),
-      render: text => <a href="#/">{text}</a>
+      ...getColumnSearchProps("full_name")
+      // render: text => <a href="#/">{text}</a>
     },
     {
       title: "email",
@@ -267,19 +266,20 @@ function Users(props) {
   return (
     <div>
       <ModalAddUser loading={stateLoading} addUser={addUser} />
-      <Cascade />
       <Table
         columns={columns}
         dataSource={stateUsers}
         onChange={handleChange}
         loading={stateLoading}
         rowKey={i => i._id}
-        // expandable={{
-        //   expandedRowRender: record => (
-        //     <p style={{ margin: 0 }}>{record.bio}</p>
-        //   ),
-        //   rowExpandable: record => record.bio
-        // }}
+        expandable={{
+          expandedRowRender: record => (
+            <p style={{ margin: 0 }}>
+              <b>Bio : </b> {record.bio}
+            </p>
+          ),
+          rowExpandable: record => record.bio
+        }}
       />
     </div>
   );
