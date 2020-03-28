@@ -9,10 +9,10 @@ import {
 import { Spin } from "antd";
 import Dashboard from "./assets/components/pages/Dashboard";
 import Users from "./assets/components/pages/Users";
-import Village from "./assets/components/pages/Village";
+// import Village from "./assets/components/pages/Village";
 import Post from "./assets/components/pages/Post";
 import Campaign from "./assets/components/pages/Campaign";
-import Pages from "./assets/components/pages/Pages";
+import Articles from "./assets/components/pages/Articles";
 
 // Redux
 import { useSelector } from "react-redux";
@@ -50,16 +50,19 @@ function App() {
               <PageLayout user={login}>
                 <Switch>
                   <Route path="/users" render={props => <Users {...props} />} />
-                  <Route
+                  {/* <Route
                     path="/village"
                     render={props => <Village {...props} />}
-                  />
+                  /> */}
                   <Route path="/post" render={props => <Post {...props} />} />
                   <Route
                     path="/campaign"
                     render={props => <Campaign {...props} />}
                   />
-                  <Route path="/pages" render={props => <Pages {...props} />} />
+                  <Route
+                    path="/articles"
+                    render={props => <Articles {...props} />}
+                  />
                   <Route
                     path="/dashboard"
                     render={props => <Dashboard {...props} />}
