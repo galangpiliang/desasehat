@@ -1,4 +1,10 @@
-import { GET_ARTICLES, DELETE_ARTICLES, LOADING, baseUrl } from "./types";
+import {
+  GET_ARTICLES,
+  DELETE_ARTICLES,
+  ADD_ARTICLES,
+  LOADING,
+  baseUrl
+} from "./types";
 import Axios from "axios";
 import { message } from "antd";
 
@@ -45,6 +51,38 @@ export const ACTION_DELETE_ARTICLES = id => {
       })
       .catch(error => {
         dispatch({ type: LOADING });
+        return error;
+      });
+  };
+};
+
+export const ACTION_ADD_ARTICLES = input => {
+  let data = new FormData();
+  data.append("image", input.upload[0].originFileObj);
+  data.append("title", input.title);
+  data.append("body", input.article);
+  data.append("tag", input.tag);
+  data.append("disease_category", input.category);
+  // console.log(...data);
+  console.log(input);
+  // console.log(input.upload[0].originFileObj);
+  return dispatch => {
+    console.log("ACTION_ADD_ARTICLES");
+    dispatch({ type: LOADING });
+    return Axios.post(`${baseUrl}/article/`, data, setToken)
+      .then(res => {
+        dispatch({
+          type: ADD_ARTICLES,
+          payload: res.data.data
+        });
+        dispatch({ type: LOADING });
+        message.info("A new Article has been created");
+        console.log(res);
+        return res;
+      })
+      .catch(error => {
+        dispatch({ type: LOADING });
+        console.log(error);
         return error;
       });
   };
