@@ -16,8 +16,6 @@ export class HeaderNav extends Component {
         </div>
         <div className="navbar__menu">
           <ul>
-            <li>Login</li>
-            <li>Register</li>
             <li>Feature</li>
             <li>Download</li>
             <li>AboutUs</li>
