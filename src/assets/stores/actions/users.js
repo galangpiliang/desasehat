@@ -9,18 +9,21 @@ import {
 import Axios from "axios";
 import { message } from "antd";
 
-const local = JSON.parse(localStorage.getItem("userLocal"));
-let setToken = {
-  headers: {
-    Authorization: local ? local.token : false
-  }
+const setToken = () => {
+  const local = JSON.parse(localStorage.getItem("userLocal"));
+  console.log(local);
+  return {
+    headers: {
+      Authorization: local ? local.token : false
+    }
+  };
 };
 
 export const ACTION_GET_USERS = () => {
   return dispatch => {
     console.log("ACTION_GET_USERS");
     dispatch({ type: LOADING });
-    Axios.get(`${baseUrl}/user/allUser`, setToken)
+    Axios.get(`${baseUrl}/user/allUser`, setToken())
       .then(res => {
         console.log(res);
         dispatch({
@@ -40,7 +43,7 @@ export const ACTION_DELETE_USERS = id => {
   return dispatch => {
     console.log("ACTION_DELETE_USERS");
     dispatch({ type: LOADING });
-    return Axios.delete(`${baseUrl}/user/${id}`, setToken)
+    return Axios.delete(`${baseUrl}/user/${id}`, setToken())
       .then(res => {
         dispatch({
           type: DELETE_USERS,
@@ -61,7 +64,7 @@ export const ACTION_ADD_USERS = input => {
   return dispatch => {
     console.log("ACTION_ADD_USERS");
     dispatch({ type: LOADING });
-    return Axios.post(`${baseUrl}/user/`, input, setToken)
+    return Axios.post(`${baseUrl}/user/`, input, setToken())
       .then(res => {
         dispatch({
           type: ADD_USERS,
@@ -89,7 +92,7 @@ export const ACTION_ROLE_USERS = (id, role) => {
       {
         role: role
       },
-      setToken
+      setToken()
     )
       .then(res => {
         console.log(res);

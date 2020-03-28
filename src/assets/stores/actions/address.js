@@ -19,7 +19,7 @@ export const ACTION_GET_ADDRESS = () => {
     console.log("ACTION_GET_ADDRESS");
 
     // dispatch({ type: LOADING });
-    return Axios.get(`${baseUrl}/address`, setToken)
+    return Axios.get(`${baseUrl}/address`, setToken())
       .then(res => {
         console.log(res);
         dispatch({
@@ -54,7 +54,7 @@ export const ACTION_GET_ADDRESS_DISTRICT = id => {
     }
 
     // dispatch({ type: LOADING });
-    return Axios.get(`${baseUrl}/address/${link}`, setToken)
+    return Axios.get(`${baseUrl}/address/${link}`, setToken())
       .then(res => {
         console.log(res);
         dispatch({

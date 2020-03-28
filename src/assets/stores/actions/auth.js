@@ -43,6 +43,7 @@ export const ACTION_SIGN_IN = input => {
     Axios.post(`${baseUrl}/user/auth`, input)
       .then(res => {
         console.log(res);
+        localStorage.setItem("userLocal", JSON.stringify(res.data.data));
         dispatch({
           type: SIGN_IN,
           payload: res.data.data
@@ -94,9 +95,9 @@ export const ACTION_UPDATE_PROFILE = input => dispatch => {
       Authorization: local ? local.token : false
     }
   };
-  console.log("ACTION_UPDATE_PROFILE", setToken);
+  console.log("ACTION_UPDATE_PROFILE");
   dispatch({ type: LOADING });
-  Axios.put(`${baseUrl}/users`, input, setToken)
+  Axios.put(`${baseUrl}/users`, input, setToken())
     .then(res => {
       console.log(res);
       dispatch({
@@ -122,11 +123,11 @@ export const ACTION_CHANGE_AVATAR = inputFile => dispatch => {
       Authorization: local ? local.token : false
     }
   };
-  console.log("ACTION_CHANGE_AVATAR", setToken);
+  console.log("ACTION_CHANGE_AVATAR");
   const data = new FormData();
   data.append("image", inputFile);
   dispatch({ type: LOADING });
-  Axios.put(`${baseUrl}/users`, data, setToken)
+  Axios.put(`${baseUrl}/users`, data, setToken())
     .then(res => {
       console.log(res);
       dispatch({

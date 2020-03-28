@@ -8,18 +8,21 @@ import {
 import Axios from "axios";
 import { message } from "antd";
 
-const local = JSON.parse(localStorage.getItem("userLocal"));
-let setToken = {
-  headers: {
-    Authorization: local ? local.token : false
-  }
+const setToken = () => {
+  const local = JSON.parse(localStorage.getItem("userLocal"));
+  console.log(local);
+  return {
+    headers: {
+      Authorization: local ? local.token : false
+    }
+  };
 };
 
 export const ACTION_GET_CAMPAIGN = () => {
   return dispatch => {
     console.log("ACTION_GET_CAMPAIGN");
     dispatch({ type: LOADING });
-    Axios.get(`${baseUrl}/campaign`, setToken)
+    Axios.get(`${baseUrl}/campaign`, setToken())
       .then(res => {
         console.log(res);
         dispatch({
@@ -39,7 +42,7 @@ export const ACTION_DELETE_CAMPAIGN = id => {
   return dispatch => {
     console.log("ACTION_DELETE_CAMPAIGN");
     dispatch({ type: LOADING });
-    return Axios.delete(`${baseUrl}/campaign/${id}`, setToken)
+    return Axios.delete(`${baseUrl}/campaign/${id}`, setToken())
       .then(res => {
         dispatch({
           type: DELETE_CAMPAIGN,
@@ -65,7 +68,7 @@ export const ACTION_VERIFY_CAMPAIGN = (id, status = true) => {
       {
         status: status ? "verified" : "reject"
       },
-      setToken
+      setToken()
     )
       .then(res => {
         dispatch({
