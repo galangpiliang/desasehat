@@ -10,14 +10,17 @@ export class HeroPage extends Component {
         <Row>
           <Col span={12} className="hero__text">
             <h1>
-              Crowdfunding Platfrom to help Villagers With Health & Medical
-              Needs
+              Crowdfunding Platfrom
+              <br />
+              to help Villagers With <br />
+              Health & Medical Needs
             </h1>
             <p>
-              Desasehat adalah platfrom untuk membuat kampanye,dan menyalurkan
-              donasi secara peer to peer bagi warga desa yang membutuhkan
-              bantuan dan pembiayaan medis dari para#Dermawan dari seluruh
-              Indonesia
+              The advice is a platform for making campaigns, and distributing
+              donations <br />
+              peer to peer for villagers who need help and medical
+              <br />
+              funding from # Generous people from all over Indonesia
             </p>
             <img src={googleplay} alt="googleplay" className="googleplay" />
           </Col>
