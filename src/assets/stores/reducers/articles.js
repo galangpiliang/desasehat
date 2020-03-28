@@ -1,11 +1,11 @@
-import { GET_ARTICLES, DELETE_ARTICLES } from "../actions/types";
+import { GET_ARTICLES, DELETE_ARTICLES, ADD_ARTICLES } from "../actions/types";
 
 const initialState = {
   data: [],
   details: {}
 };
 
-const campaignReducer = (state = initialState, action) => {
+const articlesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ARTICLES:
       return {
@@ -19,7 +19,12 @@ const campaignReducer = (state = initialState, action) => {
       };
     default:
       return state;
+    case ADD_ARTICLES:
+      return {
+        ...state,
+        data: [...state.data, action.payload]
+      };
   }
 };
 
-export default campaignReducer;
+export default articlesReducer;

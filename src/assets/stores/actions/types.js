@@ -19,6 +19,7 @@ export const VERIFY_CAMPAIGN = "VERIFY_CAMPAIGN";
 
 export const GET_ARTICLES = "GET_ARTICLES";
 export const DELETE_ARTICLES = "DELETE_ARTICLES";
+export const ADD_ARTICLES = "ADD_ARTICLES"
 
 export const ADD_USERS = "ADD_USERS";
 export const GET_USERS = "GET_USERS";
