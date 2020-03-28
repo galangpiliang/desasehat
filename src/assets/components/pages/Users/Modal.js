@@ -1,5 +1,12 @@
-import React, { useState } from "react";
-import { Button, Modal, Form, Input, Radio } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Modal, Form, Input, Radio, Cascader } from "antd";
+
+// Redux
+import { useDispatch } from "react-redux";
+import {
+  ACTION_GET_ADDRESS,
+  ACTION_GET_ADDRESS_DISTRICT
+} from "../../../stores/actions/address";
 
 const formItemLayout = {
   labelCol: {
@@ -12,6 +19,61 @@ const formItemLayout = {
 
 const CollectionCreateForm = ({ visible, onCreate, onCancel, loading }) => {
   const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const [state, setState] = useState({
+    options: []
+  });
+  // const stateAddress = useSelector(state => state.address);
+
+  const onChange = (value, selectedOptions) => {
+    console.log(value, selectedOptions);
+  };
+
+  const loadData = selectedOptions => {
+    const targetOption = selectedOptions[selectedOptions.length - 1];
+    targetOption.loading = true;
+
+    console.log("targetOption.loading", targetOption);
+
+    dispatch(ACTION_GET_ADDRESS_DISTRICT(targetOption.value)).then(res => {
+      targetOption.loading = false;
+      const district = res.data.data.map(district => {
+        return targetOption.value.length > 4
+          ? {
+              value: district.nama,
+              label: district.nama
+            }
+          : {
+              value: district.id,
+              label: district.nama,
+              isLeaf: false
+            };
+      });
+
+      targetOption.children = district;
+      setState({
+        options: [...state.options]
+      });
+    });
+  };
+  useEffect(() => {
+    dispatch(ACTION_GET_ADDRESS()).then(res => {
+      console.log(res);
+      const provinces = res.data.data.map(province => {
+        return {
+          value: province.id,
+          label: province.nama,
+          isLeaf: false
+        };
+      });
+      setState({
+        options: [...provinces]
+      });
+    });
+    return () => {
+      console.log("Cleanup");
+    };
+  }, [dispatch]);
   return (
     <Modal
       visible={visible}
@@ -89,10 +151,18 @@ const CollectionCreateForm = ({ visible, onCreate, onCancel, loading }) => {
           name="address"
           hasFeedback
           rules={[
-            { min: 5, required: true, message: "Please input your Address!" }
+            {
+              type: "array",
+              required: true,
+              message: "Please select your address!"
+            }
           ]}
         >
-          <Input />
+          <Cascader
+            options={state.options}
+            loadData={loadData}
+            onChange={onChange}
+          />
         </Form.Item>
 
         <Form.Item
@@ -144,6 +214,9 @@ const ModalAddUser = props => {
   const [visible, setVisible] = useState(false);
 
   const onCreate = (values, form) => {
+    values.address = values.address[values.address.length - 1];
+    console.log("values", values);
+    console.log("form", form);
     props.addUser(values, form, setVisible);
   };
 
