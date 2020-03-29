@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Upload, message } from "antd";
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+// import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 
 function getBase64(img, callback) {
@@ -44,12 +44,12 @@ const Profile = () => {
     }
   };
 
-  const uploadButton = (
-    <div>
-      {state.loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div className="ant-upload-text">Upload</div>
-    </div>
-  );
+  // const uploadButton = (
+  //   <div>
+  //     {state.loading ? <LoadingOutlined /> : <PlusOutlined />}
+  //     <div className="ant-upload-text">Upload</div>
+  //   </div>
+  // );
   const { imageUrl } = state;
   return (
     <Upload
