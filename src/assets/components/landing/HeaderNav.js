@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "../../images/logo.png";
+import { Link } from "react-router-dom";
 
 export class HeaderNav extends Component {
   render() {
@@ -17,8 +18,14 @@ export class HeaderNav extends Component {
           </div>
           <div className="navbar__menu">
             <ul>
-              <li>Feature</li>
-              <li>Download</li>
+              <li>
+                {/* <a href="#feature">Feature</a> */}
+                Feature
+              </li>
+              <li>
+                {/* <a href="#dl">Download</a> */}
+                Download
+              </li>
               <li>AboutUs</li>
             </ul>
           </div>
