@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu, message, Dropdown } from "antd";
 import {
-  HomeOutlined,
+  // HomeOutlined,
   UserOutlined,
   TeamOutlined,
   FormOutlined,
@@ -11,14 +11,52 @@ import {
   PoweroffOutlined
 } from "@ant-design/icons";
 import "./PageLayout.scss";
-import { Link, Switch, Route, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { Link, Switch, Route, useHistory } from "react-router-dom";
 import { ACTION_SIGN_OUT } from "../../stores/actions/auth";
 import { useDispatch } from "react-redux";
 
 const PageLayout = props => {
   const { Header, Content, Footer, Sider } = Layout;
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
+
+  let title = props.location.pathname;
+  let indexPage = "1";
+  const dashboardPath = "/dashboard";
+  const userPath = "/users";
+  // const villagePath = "/village";
+  const postPath = "/post";
+  const campaignPath = "/campaign";
+  const articlesPath = "/articles";
+
+  console.log("props.location.pathname", props.location.pathname);
+
+  switch (title) {
+    case userPath:
+      title = "Users";
+      indexPage = "2";
+      break;
+    // case villagePath:
+    //   title = "Village";
+    //   indexPage = "3";
+    //   break;
+    case postPath:
+      title = "Post New Article";
+      indexPage = "4";
+      break;
+    case campaignPath:
+      title = "Campaign";
+      indexPage = "5";
+      break;
+    case articlesPath:
+      title = "Article";
+      indexPage = "6";
+      break;
+    default:
+      title = "Dashboard";
+      break;
+  }
 
   const doSignout = () => {
     console.log("signout triggered");
@@ -35,17 +73,16 @@ const PageLayout = props => {
   }
 
   function handleProfileClick(e) {
-    message.info("You are in dashboard page");
+    message.info("Hello " + props.user.full_name + ", How are you ? ");
     console.log("click", e);
-    history.push("/dashboard");
   }
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">
+      {/* <Menu.Item key="1">
         <UserOutlined />
         Profile
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="2">
         <PoweroffOutlined />
         Logout
@@ -65,41 +102,41 @@ const PageLayout = props => {
         }}
       >
         <div className="logo">Desa Sehat</div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={indexPage}>
           <Menu.Item key="1">
             <DashboardOutlined />
-            <Link to="/dashboard">
+            <Link to={dashboardPath}>
               <span className="nav-text">Dashboard</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="2">
             <TeamOutlined />
-            <Link to="/users">
+            <Link to={userPath}>
               <span className="nav-text">Users</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          {/* <Menu.Item key="3">
             <HomeOutlined />
-            <Link to="/village">
+            <Link to={villagePath}>
               <span className="nav-text">Village</span>
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="4">
             <FormOutlined />
-            <Link to="/post">
+            <Link to={postPath}>
               <span className="nav-text">Post</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="5">
             <AlertOutlined />
-            <Link to="/campaign">
+            <Link to={campaignPath}>
               <span className="nav-text">Campaign</span>
             </Link>
           </Menu.Item>
           <Menu.Item key="6">
             <CopyOutlined />
-            <Link to="/pages">
-              <span className="nav-text">Pages</span>
+            <Link to={articlesPath}>
+              <span className="nav-text">Articles</span>
             </Link>
           </Menu.Item>
         </Menu>
@@ -109,16 +146,7 @@ const PageLayout = props => {
           className="site-layout-sub-header-background"
           style={{ display: "flex" }}
         >
-          <h1>
-            <Switch>
-              <Route path="/users">Users</Route>
-              <Route path="/village">Village</Route>
-              <Route path="/post">Post</Route>
-              <Route path="/campaign">Campaign</Route>
-              <Route path="/pages">Pages</Route>
-              <Route>Dashboard</Route>
-            </Switch>
-          </h1>
+          <h1>{title}</h1>
           <Dropdown.Button
             overlay={menu}
             icon={<UserOutlined />}

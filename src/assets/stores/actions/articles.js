@@ -1,8 +1,7 @@
 import {
-  GET_USERS,
-  ADD_USERS,
-  DELETE_USERS,
-  ROLE_USERS,
+  GET_ARTICLES,
+  DELETE_ARTICLES,
+  ADD_ARTICLES,
   LOADING,
   baseUrl
 } from "./types";
@@ -19,15 +18,15 @@ const setToken = () => {
   };
 };
 
-export const ACTION_GET_USERS = () => {
+export const ACTION_GET_ARTICLES = () => {
   return dispatch => {
-    console.log("ACTION_GET_USERS");
+    console.log("ACTION_GET_ARTICLES");
     dispatch({ type: LOADING });
-    Axios.get(`${baseUrl}/user/allUser`, setToken())
+    Axios.get(`${baseUrl}/article`, setToken())
       .then(res => {
         console.log(res);
         dispatch({
-          type: GET_USERS,
+          type: GET_ARTICLES,
           payload: res.data.data
         });
         dispatch({ type: LOADING });
@@ -39,14 +38,14 @@ export const ACTION_GET_USERS = () => {
   };
 };
 
-export const ACTION_DELETE_USERS = id => {
+export const ACTION_DELETE_ARTICLES = id => {
   return dispatch => {
-    console.log("ACTION_DELETE_USERS");
+    console.log("ACTION_DELETE_ARTICLES");
     dispatch({ type: LOADING });
-    return Axios.delete(`${baseUrl}/user/${id}`, setToken())
+    return Axios.delete(`${baseUrl}/article?_id=${id}`, setToken())
       .then(res => {
         dispatch({
-          type: DELETE_USERS,
+          type: DELETE_ARTICLES,
           payload: id
         });
         dispatch({ type: LOADING });
@@ -60,18 +59,24 @@ export const ACTION_DELETE_USERS = id => {
   };
 };
 
-export const ACTION_ADD_USERS = input => {
+export const ACTION_ADD_ARTICLES = input => {
+  let data = new FormData();
+  data.append("image", input.upload[0].originFileObj);
+  data.append("title", input.title);
+  data.append("body", input.article);
+  data.append("tag", input.tag);
+  data.append("disease_category", input.category);
   return dispatch => {
-    console.log("ACTION_ADD_USERS");
+    console.log("ACTION_ADD_ARTICLES");
     dispatch({ type: LOADING });
-    return Axios.post(`${baseUrl}/user/`, input, setToken())
+    return Axios.post(`${baseUrl}/article/`, data, setToken())
       .then(res => {
         dispatch({
-          type: ADD_USERS,
+          type: ADD_ARTICLES,
           payload: res.data.data
         });
         dispatch({ type: LOADING });
-        message.info("A new User has been created");
+        message.info("A new Article has been created");
         console.log(res);
         return res;
       })
@@ -79,38 +84,6 @@ export const ACTION_ADD_USERS = input => {
         dispatch({ type: LOADING });
         console.log(error);
         return error;
-      });
-  };
-};
-
-export const ACTION_ROLE_USERS = (id, role) => {
-  return dispatch => {
-    console.log("ACTION_ROLE_USERS");
-    dispatch({ type: LOADING });
-    return Axios.put(
-      `${baseUrl}/user/role/${id}`,
-      {
-        role: role
-      },
-      setToken()
-    )
-      .then(res => {
-        console.log(res);
-        dispatch({
-          type: ROLE_USERS,
-          payload: res.data.data
-        });
-        message.info("The role was updated to " + role);
-        dispatch({ type: LOADING });
-        return res;
-      })
-      .catch(error => {
-        console.log(error);
-        // dispatch({
-        //   type: ERROR_LOGIN,
-        //   payload: error
-        // });
-        dispatch({ type: LOADING });
       });
   };
 };

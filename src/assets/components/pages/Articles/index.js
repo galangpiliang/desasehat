@@ -7,13 +7,12 @@ import { SearchOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
-  ACTION_GET_CAMPAIGN,
-  ACTION_DELETE_CAMPAIGN,
-  ACTION_VERIFY_CAMPAIGN
-} from "../../../stores/actions/campaign";
+  ACTION_GET_ARTICLES,
+  ACTION_DELETE_ARTICLES
+} from "../../../stores/actions/articles";
 // import ModalAddUser from "./Modal";
 
-function Campaign(props) {
+function Articles(props) {
   const dispatch = useDispatch();
   const { confirm } = Modal;
   const stateLoading = useSelector(state => state.loading);
@@ -109,7 +108,7 @@ function Campaign(props) {
   // End Filter Table Data
 
   // Table Data
-  const stateCampaign = useSelector(state => state.campaign.data);
+  const stateArticles = useSelector(state => state.articles.data);
   const columns = [
     {
       title: "Title",
@@ -123,146 +122,129 @@ function Campaign(props) {
       sortDirections: ["ascend", "descend"],
       ...getColumnSearchProps("title")
     },
-    // {
-    //   title: "Initiator",
-    //   dataIndex: "initiator",
-    //   key: "initiator",
-    //   onFilter: (value, record) =>
-    //     record.initiator.full_name.indexOf(value) === 0,
-    //   sorter: (a, b) => {
-    //     return a.initiator.full_name.localeCompare(b.initiator.full_name);
-    //   },
-    //   sortDirections: ["ascend", "descend"],
-    //   ...getColumnSearchProps("initiator"),
-    //   render: text => text.full_name
-    // },
     {
-      title: "Target",
-      dataIndex: "total_fund",
-      key: "total_fund",
-      onFilter: (value, record) => record.total_fund.indexOf(value) === 0,
-      sorter: (a, b) => {
-        return a.total_fund - b.total_fund;
-      },
-      sortDirections: ["ascend", "descend"],
-      ...getColumnSearchProps("total_fund"),
-      render: text => text.toLocaleString()
-    },
-    {
-      title: "Donation",
-      dataIndex: "current_fund",
-      key: "current_fund",
-      onFilter: (value, record) => record.current_fund.indexOf(value) === 0,
-      sorter: (a, b) => {
-        return a.current_fund - b.current_fund;
-      },
-      sortDirections: ["ascend", "descend"],
-      ...getColumnSearchProps("current_fund"),
-      render: text => text.toLocaleString()
-    },
-    {
-      title: "Due Date",
-      dataIndex: "due_date",
-      key: "due_date",
-      onFilter: (value, record) => record.due_date.indexOf(value) === 0,
-      sorter: (a, b) => {
-        return new Date(a.due_date) - new Date(b.due_date);
-      },
-      sortDirections: ["ascend", "descend"],
-      ...getColumnSearchProps("due_date"),
-      render: text => new Date(text).toLocaleDateString()
-    },
-    {
-      title: "status",
-      dataIndex: "status",
-      key: "status",
+      title: "tag",
+      dataIndex: "tag",
+      key: "tag",
       ellipsis: true,
       filters: [
-        { text: "Pending", value: "pending" },
-        { text: "Verified", value: "verified" },
-        { text: "Reject", value: "reject" }
+        { text: "Facts", value: "facts" },
+        { text: "Prevention", value: "prevention" },
+        { text: "Treatment", value: "treatment" }
       ],
-      onFilter: (value, record) => record.status.indexOf(value) === 0,
+      onFilter: (value, record) => record.tag.indexOf(value) === 0,
       sorter: (a, b) => {
-        return a.status.localeCompare(b.status);
+        return a.tag.localeCompare(b.tag);
       },
       sortDirections: ["ascend", "descend"],
-      render: status => (
+      render: tag => (
         <span>
           <Tag
             color={
-              status === "pending"
+              tag === "facts"
                 ? "green"
-                : status === "verified"
+                : tag === "prevention"
                 ? "geekblue"
                 : "volcano"
             }
-            key={status}
+            key={tag}
           >
-            {status}
+            {tag}
           </Tag>
         </span>
       )
+    },
+    {
+      title: "disease_category",
+      dataIndex: "disease_category",
+      key: "disease_category",
+      ellipsis: true,
+      onFilter: (value, record) => record.disease_category.indexOf(value) === 0,
+      sorter: (a, b) => {
+        return a.disease_category.localeCompare(b.disease_category);
+      },
+      sortDirections: ["ascend", "descend"],
+      ...getColumnSearchProps("disease_category"),
+      render: tag => (
+        <span>
+          <Tag
+            color={
+              tag === "Asthma"
+                ? "#ff6600"
+                : tag === "Diarrhea"
+                ? "#ff9900"
+                : tag === "Diabetes Mellitus"
+                ? "#ffcc00"
+                : tag === "Dengue Fever"
+                ? "#00b467"
+                : tag === "Poor Nutrition"
+                ? "#009899"
+                : tag === "Hypertension"
+                ? "#0033cc"
+                : tag === "Coronary Heart Disease"
+                ? "#330099"
+                : tag === "Malaria"
+                ? "#670099"
+                : tag === "Stroke"
+                ? "#cc0098"
+                : "#e60065"
+            }
+            key={tag}
+          >
+            {tag}
+          </Tag>
+        </span>
+      )
+    },
+    {
+      title: "Publish",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      onFilter: (value, record) => record.createdAt.indexOf(value) === 0,
+      sorter: (a, b) => {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      },
+      sortDirections: ["ascend", "descend"],
+      ...getColumnSearchProps("createdAt"),
+      render: text => new Date(text).toLocaleDateString()
     },
     {
       title: "Action",
       key: "action",
       render: (text, record) => (
         <span>
-          {record.status !== "verified" && (
-            <a
-              href="#/"
-              style={{ marginRight: 16 }}
-              onClick={() => dispatch(ACTION_VERIFY_CAMPAIGN(record._id, true))}
-            >
-              Verify
-            </a>
-          )}
-          {record.status === "pending" && (
-            <a
-              href="#/"
-              style={{ marginRight: 16 }}
-              onClick={() =>
-                dispatch(ACTION_VERIFY_CAMPAIGN(record._id, false))
-              }
-            >
-              Reject
-            </a>
-          )}
-          {record.status !== "pending" && (
-            <a
-              href="#/"
-              style={{ marginRight: 16 }}
-              onClick={() => showConfirm(record._id)}
-            >
-              Delete
-            </a>
-          )}
+          <a
+            href="#/"
+            style={{ marginRight: 16 }}
+            onClick={() => showConfirm(record._id)}
+          >
+            Delete
+          </a>
         </span>
       )
     }
   ];
   // End Table Data
 
-  // Action Campaign
+  // Action Articles
   function showConfirm(id) {
     confirm({
-      title: "Are you sure want to delete this campaign?",
+      title: "Are you sure want to delete this articles?",
       icon: <ExclamationCircleOutlined />,
       content:
-        "This campaign will be deleted immediately. You can't undo this action.",
+        "This articles will be deleted immediately. You can't undo this action.",
       onOk() {
         return new Promise((resolve, reject) => {
-          dispatch(ACTION_DELETE_CAMPAIGN(id)).then(resolve);
+          dispatch(ACTION_DELETE_ARTICLES(id)).then(resolve);
         }).catch(() => console.log("Oops errors!"));
       },
       onCancel() {}
     });
   }
-  // End Action Campaign
+  // End Action Articles
 
   useEffect(() => {
-    dispatch(ACTION_GET_CAMPAIGN());
+    dispatch(ACTION_GET_ARTICLES());
     return () => {
       console.log("Cleanup");
     };
@@ -273,7 +255,7 @@ function Campaign(props) {
       {/* <ModalAddUser loading={stateLoading} addUser={addUser} /> */}
       <Table
         columns={columns}
-        dataSource={stateCampaign}
+        dataSource={stateArticles}
         onChange={handleChange}
         loading={stateLoading}
         rowKey={i => i._id}
@@ -281,14 +263,14 @@ function Campaign(props) {
           expandedRowRender: record => (
             <p style={{ margin: 0 }}>
               <h3>{record.title}</h3>
-              {record.description}
+              {record.body}
             </p>
           ),
-          rowExpandable: record => record.description
+          rowExpandable: record => record.body
         }}
       />
     </div>
   );
 }
 
-export default Campaign;
+export default Articles;

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Card, Button, Typography, Spin } from "antd";
 import {
-  HomeOutlined,
+  // HomeOutlined,
   TeamOutlined,
-  FormOutlined,
+  // FormOutlined,
   AlertOutlined,
   CopyOutlined
 } from "@ant-design/icons";
@@ -50,7 +50,7 @@ export default function Dashboard() {
           </Button>
         </Card>
       </div>
-      <div className="site-card-border-less-wrapper">
+      {/* <div className="site-card-border-less-wrapper">
         <Card
           title={
             <span>
@@ -65,8 +65,8 @@ export default function Dashboard() {
             More Detail
           </Button>
         </Card>
-      </div>
-      <div className="site-card-border-less-wrapper">
+      </div> */}
+      {/* <div className="site-card-border-less-wrapper">
         <Card
           title={
             <span>
@@ -76,12 +76,12 @@ export default function Dashboard() {
           bordered={false}
           style={{ width: 300 }}
         >
-          <Title> {stateLoading ? <Spin /> : "Create"}</Title>
+          <Title> {stateLoading ? <Spin /> : "Post"}</Title>
           <Button type="primary" onClick={() => redirect("post")}>
-            New Post
+            New Article
           </Button>
         </Card>
-      </div>
+      </div> */}
       <div className="site-card-border-less-wrapper">
         <Card
           title={
@@ -102,14 +102,14 @@ export default function Dashboard() {
         <Card
           title={
             <span>
-              <CopyOutlined /> &emsp; Pages
+              <CopyOutlined /> &emsp; Articles
             </span>
           }
           bordered={false}
           style={{ width: 300 }}
         >
           <Title> {stateLoading ? <Spin /> : stateDashboard.post}</Title>
-          <Button type="primary" onClick={() => redirect("pages")}>
+          <Button type="primary" onClick={() => redirect("articles")}>
             More Detail
           </Button>
         </Card>

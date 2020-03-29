@@ -29,11 +29,11 @@
       li {
         list-style: none;
         margin: 0 2rem;
-        // padding: 10px;
+        padding: 5px;
         &:hover {
-          // background-color: cadetblue;
+          background-color: rgb(226, 222, 222);
           cursor: pointer;
-          // border-radius: 20px;
+          // border-radius: 50px;
           // color: white;
         }
       }
@@ -49,18 +49,30 @@
         background: linear-gradient(to right, $color-secondary, $color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-size: 2.1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
       }
 
       .googleplay {
-        width: 7rem;
+        width: 13rem;
         margin-left: -0.5rem;
       }
     }
     &__image {
       .desasehat {
-        width: 30rem;
-        margin-left: 9.5rem;
+        width: 35rem;
+        margin-left: 4.8rem;
         border-radius: 1rem;
+      }
+    }
+    @media (max-width: 1866px) {
+      .hero {
+        width: 100vw;
+        overflow: hidden;
+
       }
     }
   }
@@ -74,27 +86,50 @@
     }
     &__list {
       text-align: center;
+      i {
+        font-size: 2.5rem;
+      }
     }
   }
 
   .download {
     padding: 2rem 0;
+
+    &__title {
+      h2 {
+        font-size: 2rem;
+      }
+    }
     &__detail {
       h4 {
         margin-top: 200px;
+        font-size: 1.5rem;
       }
       &__image {
         text-align: center;
+      }
+      p {
+        font-size: 1rem;
       }
     }
 
     .download-button {
       &--primary {
-        background-image: linear-gradient(
-          to right,
-          $color-secondary,
-          $color-primary
-        );
+        // // background-image: linear-gradient(
+        // //   to right,
+        // //   $color-secondary,
+        // //   $color-primary
+        // );
+        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border: 1px solid $color-secondary;
+        &:hover {
+          // background-color: rgb(226, 222, 222);
+          cursor: pointer;
+          // border-radius: 50px;
+          // color: white;
+        }
       }
 
       &--secondary {
@@ -102,6 +137,13 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         border: 1px solid $color-secondary;
+        margin-left: 20px;
+        &:hover {
+          // background-color: rgb(226, 222, 222);
+          cursor: pointer;
+          // border-radius: 50px;
+          // color: white;
+        }
       }
     }
 
@@ -143,3 +185,5 @@
     }
   }
 }
+
+// @media ()

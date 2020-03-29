@@ -5,9 +5,9 @@ export class FooterPage extends Component {
     return (
       <div className="footer">
         <div className="footer__icon">
-          <i class="fa fab fa-instagram fa-2x"></i>
-          <i class="fa fab fa-twitter fa-2x"></i>
-          <i class="fa fab fa-facebook-square fa-2x"></i>
+          <i class="fab fa-instagram fa-2x"></i>
+          <i class="fab fa-twitter fa-2x"></i>
+          <i class="fab fa-facebook fa-2x"></i>
         </div>
         <div className="footer__menu">
           <ul>
