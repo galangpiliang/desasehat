@@ -66,13 +66,10 @@ export const ACTION_ADD_ARTICLES = input => {
   data.append("body", input.article);
   data.append("tag", input.tag);
   data.append("disease_category", input.category);
-  // console.log(...data);
-  console.log(input);
-  // console.log(input.upload[0].originFileObj);
   return dispatch => {
     console.log("ACTION_ADD_ARTICLES");
     dispatch({ type: LOADING });
-    return Axios.post(`${baseUrl}/article/`, data, setToken)
+    return Axios.post(`${baseUrl}/article/`, data, setToken())
       .then(res => {
         dispatch({
           type: ADD_ARTICLES,

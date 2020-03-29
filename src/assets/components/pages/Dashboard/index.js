@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Card, Button, Typography, Spin } from "antd";
 import {
-  HomeOutlined,
+  // HomeOutlined,
   TeamOutlined,
-  FormOutlined,
+  // FormOutlined,
   AlertOutlined,
   CopyOutlined
 } from "@ant-design/icons";

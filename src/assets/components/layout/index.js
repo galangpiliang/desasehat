@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu, message, Dropdown } from "antd";
 import {
-  HomeOutlined,
+  // HomeOutlined,
   UserOutlined,
   TeamOutlined,
   FormOutlined,
@@ -11,13 +11,14 @@ import {
   PoweroffOutlined
 } from "@ant-design/icons";
 import "./PageLayout.scss";
-import { Link, Switch, Route, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import { Link, Switch, Route, useHistory } from "react-router-dom";
 import { ACTION_SIGN_OUT } from "../../stores/actions/auth";
 import { useDispatch } from "react-redux";
 
 const PageLayout = props => {
   const { Header, Content, Footer, Sider } = Layout;
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
 
   let title = props.location.pathname;
@@ -72,16 +73,16 @@ const PageLayout = props => {
   }
 
   function handleProfileClick(e) {
-    message.info("Profile page is not finish yet");
+    message.info("Hello " + props.user.full_name + ", How are you ? ");
     console.log("click", e);
   }
 
   const menu = (
     <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">
+      {/* <Menu.Item key="1">
         <UserOutlined />
         Profile
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="2">
         <PoweroffOutlined />
         Logout

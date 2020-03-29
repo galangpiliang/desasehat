@@ -13,6 +13,7 @@ import Users from "./assets/components/pages/Users";
 import Post from "./assets/components/pages/Post";
 import Campaign from "./assets/components/pages/Campaign";
 import Articles from "./assets/components/pages/Articles";
+import Profile from "./assets/components/pages/Profile";
 
 // Redux
 import { useSelector } from "react-redux";
@@ -49,6 +50,10 @@ function App() {
             {login ? (
               <PageLayout user={login}>
                 <Switch>
+                  <Route
+                    path="/profile"
+                    render={props => <Profile {...props} />}
+                  />
                   <Route path="/users" render={props => <Users {...props} />} />
                   {/* <Route
                     path="/village"
