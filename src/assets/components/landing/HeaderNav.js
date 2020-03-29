@@ -5,21 +5,23 @@ export class HeaderNav extends Component {
   render() {
     return (
       <div className="navbar">
-        <div className="navbar__logo">
-          <div>
-            <img src={logo} alt="logo" />
+        <div className="container">
+          <div className="navbar__logo">
+            <div>
+              <img src={logo} alt="logo" />
+            </div>
+            <div>
+              <span className="desa">desa</span>
+              <span className="sehat">sehat</span>
+            </div>
           </div>
-          <div>
-            <span className="desa">desa</span>
-            <span className="sehat">sehat</span>
+          <div className="navbar__menu">
+            <ul>
+              <li>Feature</li>
+              <li>Download</li>
+              <li>AboutUs</li>
+            </ul>
           </div>
-        </div>
-        <div className="navbar__menu">
-          <ul>
-            <li>Feature</li>
-            <li>Download</li>
-            <li>AboutUs</li>
-          </ul>
         </div>
       </div>
     );

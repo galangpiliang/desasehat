@@ -3,9 +3,20 @@
   margin: 0 5rem;
 
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    top: 0;
+    background-color: #fff;
+    // box-shadow: 3px 3px 5px 6px #ccc;
+
+    .container {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     &__logo {
       display: flex;
       align-items: center;
@@ -33,7 +44,7 @@
         &:hover {
           background-color: rgb(226, 222, 222);
           cursor: pointer;
-          // border-radius: 50px;
+          border-radius: 50px;
           // color: white;
         }
       }
@@ -50,6 +61,7 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 2.1rem;
+        margin-top: 50px;
       }
 
       p {
@@ -63,16 +75,16 @@
     }
     &__image {
       .desasehat {
-        width: 35rem;
-        margin-left: 4.8rem;
+        width: 30rem;
+        margin-left: 9.7rem;
         border-radius: 1rem;
+        margin-top: 50px;
       }
     }
     @media (max-width: 1866px) {
       .hero {
         width: 100vw;
         overflow: hidden;
-
       }
     }
   }
@@ -167,7 +179,7 @@
     background: linear-gradient(to right, $color-secondary, $color-primary);
     color: white;
     &__icon {
-      .fa {
+      .fab {
         margin: 1rem;
       }
     }

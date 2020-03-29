@@ -20,12 +20,11 @@ export class DownloadPage extends Component {
               <img src={app} alt="app" className="app-image" />
             </Col>
             <Col span={12}>
-              <h4>Lorem ipsum si simply</h4>
+              <h4>Desasehat</h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                Health Access In the Hands Through the Advice platform, users
+                can help build village health starting from creating campaigns,
+                making donations, and reading articles
               </p>
               <button className="download-button--primary">download</button>
               <button className="download-button--secondary">
