@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import "./App.scss";
+import "./App.less";
 import {
   BrowserRouter as Router,
   Switch,

@@ -6,7 +6,7 @@ import FeaturePage from "./FeaturePage";
 import DownloadPage from "./DownloadPage";
 import SubscribePage from "./SubscribePage";
 import FooterPage from "./FooterPage";
-import "../../style/LandingPage.scss";
+import "../../style/LandingPage.less";
 
 export default function Landing(props) {
   return (

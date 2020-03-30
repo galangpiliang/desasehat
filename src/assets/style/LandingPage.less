@@ -1,4 +1,4 @@
-@import "./variable.scss";
+@import "./variable.less";
 .landing-page {
   margin: 0 5rem;
 
@@ -27,10 +27,10 @@
         font-size: 2.6rem;
       }
       .desa {
-        color: $color-secondary;
+        color: @color-secondary;
       }
       .sehat {
-        color: $color-primary;
+        color: @color-primary;
       }
     }
     &__menu {
@@ -60,7 +60,7 @@
 
     &__text {
       h1 {
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 2.1rem;
@@ -132,13 +132,13 @@
       &--primary {
         // // background-image: linear-gradient(
         // //   to right,
-        // //   $color-secondary,
-        // //   $color-primary
+        // //   @color-secondary,
+        // //   @color-primary
         // );
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        border: 1px solid $color-secondary;
+        border: 1px solid @color-secondary;
         border-radius: 5px;
         &:hover {
           // background-color: rgb(226, 222, 222);
@@ -149,10 +149,10 @@
       }
 
       &--secondary {
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        border: 1px solid $color-secondary;
+        border: 1px solid @color-secondary;
         margin-left: 20px;
         border-radius: 5px;
         &:hover {
@@ -185,7 +185,7 @@
   .footer {
     padding: 2rem 0;
     text-align: center;
-    background: linear-gradient(to right, $color-secondary, $color-primary);
+    background: linear-gradient(to right, @color-secondary, @color-primary);
     color: white;
     &__icon {
       .fab {
