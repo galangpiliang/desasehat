@@ -11,7 +11,7 @@ export class DownloadPage extends Component {
           <p>
             With the "Health Campaign" feature. now you don't need to be
             confused anymore to get help and medical funding from thousands of #
-            generous advice
+            Generous Advice
           </p>
         </div>
         <div className="download__detail">
@@ -26,9 +26,9 @@ export class DownloadPage extends Component {
                 can help build village health starting from creating campaigns,
                 making donations, and reading articles
               </p>
-              <button className="download-button--primary">download</button>
+              <button className="download-button--primary">Download</button>
               <button className="download-button--secondary">
-                google play
+                Google Play
               </button>
             </Col>
           </Row>

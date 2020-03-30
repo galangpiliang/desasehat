@@ -41,6 +41,9 @@
         list-style: none;
         margin: 0 2rem;
         padding: 5px;
+        a {
+          color: rgb(80, 79, 79);
+        }
         &:hover {
           background-color: rgb(226, 222, 222);
           cursor: pointer;
@@ -136,6 +139,7 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         border: 1px solid $color-secondary;
+        border-radius: 5px;
         &:hover {
           // background-color: rgb(226, 222, 222);
           cursor: pointer;
@@ -150,6 +154,7 @@
         -webkit-text-fill-color: transparent;
         border: 1px solid $color-secondary;
         margin-left: 20px;
+        border-radius: 5px;
         &:hover {
           // background-color: rgb(226, 222, 222);
           cursor: pointer;
@@ -171,6 +176,10 @@
     padding: 2rem 0;
     text-align: center;
     background-color: #f7f7f7;
+
+    button {
+      margin-left: 5px;
+    }
   }
 
   .footer {

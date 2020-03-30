@@ -19,12 +19,12 @@ export class HeaderNav extends Component {
           <div className="navbar__menu">
             <ul>
               <li>
-                {/* <a href="#feature">Feature</a> */}
-                Feature
+                <a href="#feature">Feature</a>
+                {/* Feature */}
               </li>
               <li>
-                {/* <a href="#dl">Download</a> */}
-                Download
+                <a href="#dl">Download</a>
+                {/* Download */}
               </li>
               <li>AboutUs</li>
             </ul>
