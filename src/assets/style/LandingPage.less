@@ -1,11 +1,22 @@
-@import "./variable.scss";
+@import "./variable.less";
 .landing-page {
   margin: 0 5rem;
 
   .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    top: 0;
+    background-color: #fff;
+    // box-shadow: 3px 3px 5px 6px #ccc;
+
+    .container {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     &__logo {
       display: flex;
       align-items: center;
@@ -16,10 +27,10 @@
         font-size: 2.6rem;
       }
       .desa {
-        color: $color-secondary;
+        color: @color-secondary;
       }
       .sehat {
-        color: $color-primary;
+        color: @color-primary;
       }
     }
     &__menu {
@@ -30,10 +41,13 @@
         list-style: none;
         margin: 0 2rem;
         padding: 5px;
+        a {
+          color: rgb(80, 79, 79);
+        }
         &:hover {
           background-color: rgb(226, 222, 222);
           cursor: pointer;
-          // border-radius: 50px;
+          border-radius: 50px;
           // color: white;
         }
       }
@@ -46,10 +60,11 @@
 
     &__text {
       h1 {
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
         font-size: 2.1rem;
+        margin-top: 50px;
       }
 
       p {
@@ -63,16 +78,16 @@
     }
     &__image {
       .desasehat {
-        width: 35rem;
-        margin-left: 4.8rem;
+        width: 30rem;
+        margin-left: 9.7rem;
         border-radius: 1rem;
+        margin-top: 50px;
       }
     }
     @media (max-width: 1866px) {
       .hero {
         width: 100vw;
         overflow: hidden;
-
       }
     }
   }
@@ -117,13 +132,14 @@
       &--primary {
         // // background-image: linear-gradient(
         // //   to right,
-        // //   $color-secondary,
-        // //   $color-primary
+        // //   @color-secondary,
+        // //   @color-primary
         // );
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        border: 1px solid $color-secondary;
+        border: 1px solid @color-secondary;
+        border-radius: 5px;
         &:hover {
           // background-color: rgb(226, 222, 222);
           cursor: pointer;
@@ -133,11 +149,12 @@
       }
 
       &--secondary {
-        background: linear-gradient(to right, $color-secondary, $color-primary);
+        background: linear-gradient(to right, @color-secondary, @color-primary);
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        border: 1px solid $color-secondary;
+        border: 1px solid @color-secondary;
         margin-left: 20px;
+        border-radius: 5px;
         &:hover {
           // background-color: rgb(226, 222, 222);
           cursor: pointer;
@@ -147,7 +164,7 @@
       }
     }
 
-    .app-image {
+    .mainpage {
       width: 20em;
     }
     &__title {
@@ -159,15 +176,19 @@
     padding: 2rem 0;
     text-align: center;
     background-color: #f7f7f7;
+
+    button {
+      margin-left: 5px;
+    }
   }
 
   .footer {
     padding: 2rem 0;
     text-align: center;
-    background: linear-gradient(to right, $color-secondary, $color-primary);
+    background: linear-gradient(to right, @color-secondary, @color-primary);
     color: white;
     &__icon {
-      .fa {
+      .fab {
         margin: 1rem;
       }
     }
@@ -176,11 +197,23 @@
       ul {
         list-style: none;
         text-align: center;
+        color: white;
       }
 
       li {
         margin: 1rem;
         display: inline-block;
+        text-decoration: none;
+        // color: rgb(90, 90, 240);
+        &:hover {
+          // background-color: rgb(226, 222, 222);
+          cursor: pointer;
+          // border-radius: 50px;
+          // color: white;
+        }
+        a {
+          color: white;
+        }
       }
     }
   }

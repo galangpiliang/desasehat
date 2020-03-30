@@ -2,7 +2,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { MailOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons";
-import "./Signin.scss";
+import "./Signin.less";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";

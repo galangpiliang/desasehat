@@ -4,7 +4,7 @@ import { Row, Col } from "antd";
 export class FeaturePage extends Component {
   render() {
     return (
-      <div className="feature">
+      <div className="feature" id="feature">
         <div className="feature__title">
           <h2>BestFeature</h2>
           <p>
