@@ -5,11 +5,7 @@ export class SubscribePage extends Component {
     return (
       <div className="subscribe">
         <h2>SubscribePage</h2>
-        <p>
-          Contrary to popular belief, Lorem Ipsum is not simply random text. It
-          has roots in a piece of classical Latin literature from 45 BC, making
-          it over 2000 years old.
-        </p>
+        <p>Subscribe to get notifications about Advice</p>
         <form>
           <input type="text" />
           <button>Subscribe</button>
