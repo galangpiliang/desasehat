@@ -7,7 +7,7 @@ import {
   AlertOutlined,
   CopyOutlined
 } from "@ant-design/icons";
-import "./Dashboard.less";
+import "./Dashboard.scss";
 import { useHistory } from "react-router-dom";
 
 // Redux

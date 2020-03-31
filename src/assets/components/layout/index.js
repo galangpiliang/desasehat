@@ -10,7 +10,7 @@ import {
   CopyOutlined,
   PoweroffOutlined
 } from "@ant-design/icons";
-import "./PageLayout.less";
+import "./PageLayout.scss";
 import { Link } from "react-router-dom";
 // import { Link, Switch, Route, useHistory } from "react-router-dom";
 import { ACTION_SIGN_OUT } from "../../stores/actions/auth";

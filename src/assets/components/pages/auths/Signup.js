@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Select, Button, Row, Col } from "antd";
 import { Link } from "react-router-dom";
-import "./Signup.less";
+import "./Signup.scss";
 
 const formItemLayout = {
   labelCol: {
